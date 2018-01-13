@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180113144837) do
+ActiveRecord::Schema.define(version: 20180113152331) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,13 @@ ActiveRecord::Schema.define(version: 20180113144837) do
     t.datetime "updated_at", null: false
     t.geometry "latlon", limit: {:srid=>0, :type=>"st_point"}
     t.index ["latlon"], name: "index_location_updates_on_latlon", using: :gist
+  end
+
+  create_table "user_grid_cells", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "grid_cell_id"
+    t.boolean "visited", default: false
   end
 
 end
