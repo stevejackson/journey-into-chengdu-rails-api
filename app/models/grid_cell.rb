@@ -25,4 +25,9 @@ class GridCell < ApplicationRecord
 
     visited_grid_cells
   end
+
+  def visited_by_user?(user: nil)
+    # TODO: we don't have users yet, but eventually this should limit by users.
+    UserGridCell.where(grid_cell_id: id, visited: true).exists?
+  end
 end
