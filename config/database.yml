@@ -17,3 +17,9 @@ development:
 test:
   <<: *default
   database: journey_test
+
+production:
+  <<: *default
+  database: journey_production
+  username: journey
+  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
