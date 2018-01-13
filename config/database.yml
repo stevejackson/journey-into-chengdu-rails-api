@@ -23,3 +23,5 @@ production:
   database: journey_production
   username: journey
   password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
+  url: <%= ENV.fetch('DATABASE_URL', '').sub(/^postgres/, "postgis") %>
+
