@@ -2,7 +2,7 @@ class GridCell < ApplicationRecord
   GRID_CELL_COVERAGE_RADIUS = 50 # unit: meters
   validates :lonlat, presence: true
 
-  def self.mark_grid_cells_as_visited_by_user(longitude, latitude)
+  def self.mark_grid_cells_as_visited_by_user!(longitude, latitude)
     # we're treating the origin of a grid cell as the "center" of the square,
     # and check coverage of it by a radius (which is a circle). it's certainly
     # not optimal, just a quick hack.
@@ -22,5 +22,7 @@ class GridCell < ApplicationRecord
       user_grid_cell.visited = true
       user_grid_cell.save!
     end
+
+    visited_grid_cells
   end
 end

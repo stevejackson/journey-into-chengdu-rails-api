@@ -6,6 +6,8 @@ class LocationUpdatesController < ApplicationController
     longitude = params[:longitude]
     point = "POINT(#{longitude} #{latitude})"
     LocationUpdate.create!(latlon: point)
+
+    @visited_grid_cells = GridCell.mark_grid_cells_as_visited_by_user!(longitude, latitude)
   end
 
   private
