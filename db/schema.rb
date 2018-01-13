@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180113100235) do
+ActiveRecord::Schema.define(version: 20180113144837) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,13 @@ ActiveRecord::Schema.define(version: 20180113100235) do
     t.geography "lonlat", limit: {:srid=>4326, :type=>"st_point", :geographic=>true}
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "location_updates", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.geometry "latlon", limit: {:srid=>0, :type=>"st_point"}
+    t.index ["latlon"], name: "index_location_updates_on_latlon", using: :gist
   end
 
 end
