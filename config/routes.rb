@@ -3,4 +3,9 @@ Rails.application.routes.draw do
   #
   resources :grid_cells, only: [:index]
   resources :location_updates, only: [:create]
+  resources :users, only: [] do
+    collection do
+      get :dashboard_metrics
+    end
+  end
 end
