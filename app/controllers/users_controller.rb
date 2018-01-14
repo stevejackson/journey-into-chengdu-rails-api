@@ -14,6 +14,7 @@ class UsersController < ApplicationController
     total_cells = GridCell.count
 
     percent = (user_visited.to_f / total_cells.to_f) * 100.0
+    percent = percent + 30.00
     percent.round(2)
   end
 end
