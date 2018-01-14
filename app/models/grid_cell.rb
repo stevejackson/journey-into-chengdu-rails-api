@@ -1,5 +1,5 @@
 class GridCell < ApplicationRecord
-  GRID_CELL_COVERAGE_RADIUS = 100 # unit: meters
+  GRID_CELL_COVERAGE_RADIUS = 250 # unit: meters
   validates :lonlat, presence: true
 
   def self.mark_grid_cells_as_visited_by_user!(longitude, latitude)
