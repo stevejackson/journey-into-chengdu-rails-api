@@ -2,6 +2,8 @@ class GridCell < ApplicationRecord
   GRID_CELL_COVERAGE_RADIUS = 500 # unit: meters
   validates :lonlat, presence: true
 
+  has_many :visited_user_grid_cells, -> { where(visited: true) }, foreign_key: "grid_cell_id", class_name: "UserGridCell"
+
   def self.mark_grid_cells_as_visited_by_user!(longitude, latitude)
     # we're treating the origin of a grid cell as the "center" of the square,
     # and check coverage of it by a radius (which is a circle). it's certainly
@@ -27,7 +29,8 @@ class GridCell < ApplicationRecord
   end
 
   def visited_by_user?(user: nil)
+    visited_user_grid_cells.any?
     # TODO: we don't have users yet, but eventually this should limit by users.
-    UserGridCell.where(grid_cell_id: id, visited: true).exists?
+    # UserGridCell.where(grid_cell_id: id, visited: true).exists?
   end
 end
